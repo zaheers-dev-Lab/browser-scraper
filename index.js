@@ -1,26 +1,19 @@
 const input = document.getElementById('input');
 const childDiv = document.getElementById('display_content');
 var contentcontainer = document.getElementById('contentcontainer');
-
 async function DispContent() {
     const inp = input.value;
     console.log(inp);
-
     const res = await fetch(`https://app.zenserp.com/api/v2/search?apikey=ab7733d0-cde6-11ef-a366-396474980c49&q=${inp}`);
-    
     console.log(res);
-
     if (!res.ok) {
         alert("Failed to fetch Title. Please try again later.");
         return;
     }
-
     const data = await res.json();
-
     childDiv.innerHTML = "";
     const array1 = data.knowledge_graph;
     const array2 = data.organic;
-
     if (inp === "") {
         alert("Please search USA city to get display data!");
         childDiv.innerHTML = "Try searching 'A cute Dog'!!!";
